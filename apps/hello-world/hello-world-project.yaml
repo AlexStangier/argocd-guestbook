@@ -8,7 +8,7 @@ spec:
   sourceRepos:
     - '*'
   destinations:
-    - namespace: nginx-hello
+    - namespace: hello-world
       server: https://kubernetes.default.svc
   clusterResourceWhitelist:
     - group: ""
