@@ -1,10 +1,10 @@
 apiVersion: argoproj.io/v1alpha1
 kind: AppProject
 metadata:
-  name: nginx-allowed
+  name: hello-world-allowed
   namespace: argocd
 spec:
-  description: Lets apps deploy to nginx-hello namespace and use all cluster-scoped resources required by nginx.
+  description: Allows deployment of the hello-world app to its own namespace.
   sourceRepos:
     - '*'
   destinations:
@@ -13,9 +13,9 @@ spec:
   clusterResourceWhitelist:
     - group: ""
       kind: Namespace
-    - group: "rbac.authorization.k8s.io"
+    - group: rbac.authorization.k8s.io
       kind: Role
-    - group: "rbac.authorization.k8s.io"
+    - group: rbac.authorization.k8s.io
       kind: RoleBinding
     - group: ""
       kind: ServiceAccount
