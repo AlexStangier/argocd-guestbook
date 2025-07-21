@@ -1,3 +1,8 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: guestbook
+---
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
@@ -15,7 +20,7 @@ spec:
           value: NodePort 
   destination:
     server: https://kubernetes.default.svc
-    namespace: app-frontend-demo  # Matches authorized pattern
+    namespace: app-backend-demo
   syncPolicy:
     automated:
       prune: true
