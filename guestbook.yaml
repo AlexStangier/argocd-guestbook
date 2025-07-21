@@ -1,0 +1,22 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: guestbook-troubleshoot
+  namespace: argocd
+spec:
+  project: team-frontend-apps
+  source:
+    repoURL: 'https://github.com/bitnami/charts.git'
+    targetRevision: HEAD
+    path: bitnami/guestbook
+    helm:
+      parameters:
+        - name: service.type
+          value: NodePort 
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: app-frontend-demo  # Matches authorized pattern
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
