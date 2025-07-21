@@ -1,0 +1,21 @@
+apiVersion: argoproj.io/v1alpha1
+kind: AppProject
+metadata:
+  name: nginx-allowed
+  namespace: argocd
+spec:
+  description: Lets apps deploy to nginx-hello namespace and use all cluster-scoped resources required by nginx.
+  sourceRepos:
+    - '*'
+  destinations:
+    - namespace: nginx-hello
+      server: https://kubernetes.default.svc
+  clusterResourceWhitelist:
+    - group: ""
+      kind: Namespace
+    - group: "rbac.authorization.k8s.io"
+      kind: Role
+    - group: "rbac.authorization.k8s.io"
+      kind: RoleBinding
+    - group: ""
+      kind: ServiceAccount
